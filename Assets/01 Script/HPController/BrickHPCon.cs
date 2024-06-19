@@ -7,14 +7,15 @@ public class BrickHPCon : HPControllerBase
 {
     public override void Hit(float dmg)
     {
+       
+        _curHP -= dmg;
+        Debug.Log($"{_curHP} 남음");
         if (_curHP <= 0)
         {
             Death();
             return;
         }
 
-        _curHP -= dmg;
-        Debug.Log($"{_curHP} 남음");
     }
     
     public override void Death()

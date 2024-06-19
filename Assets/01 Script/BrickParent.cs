@@ -1,15 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BrickParent : MonoBehaviour
 {
+    [SerializeField] private GameObject _brickPrefabs;
+    [SerializeField] private Vector3 _brickOffset;
+    
     private Rigidbody2D _rigid;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        int ranIdx = Random.Range(3, 6);
+        for (int i = 0; i < ranIdx; i++)
+        {
+            GameObject brick = Instantiate(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
+            brick.transform.SetParent(transform);
+        }
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     public void UpForce(float power)
