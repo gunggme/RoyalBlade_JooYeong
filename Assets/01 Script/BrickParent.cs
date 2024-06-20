@@ -15,17 +15,17 @@ public class BrickParent : MonoBehaviour
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        int ranIdx = Random.Range(3, 6);
-        for (int i = 0; i < ranIdx; i++)
-        {
-            GameObject brick = Instantiate(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
-            brick.transform.SetParent(transform);
-        }
+        
     }
 
     private void OnEnable()
     {
-        
+        int ranIdx = Random.Range(3, 6);
+        for (int i = 0; i < ranIdx; i++)
+        {
+            GameObject brick = PoolManager.Instantiate(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
+            brick.transform.SetParent(transform);
+        }
     }
 
     public void UpForce(float power)
