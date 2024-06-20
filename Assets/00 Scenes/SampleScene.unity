@@ -1040,10 +1040,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 725707663}
+  - component: {fileID: 725707664}
   m_Layer: 0
   m_Name: BrickSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1055,13 +1056,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725707662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.6893578, y: 2.7803304, z: -0.12482877}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 15.08, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1773256175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &725707664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725707662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7370e7df0e519f46be71130a81993d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpawnTimer: 3
+  _spawnTimer: 0
+  _totalTimer: 0
+  _brickParentPrefab: {fileID: 2731639143523367350, guid: 697ad6bc1dcee384ca93cfdcdae3663d, type: 3}
 --- !u!1 &758311913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1733,7 @@ Transform:
   m_Children:
   - {fileID: 547804650}
   - {fileID: 442373280}
+  - {fileID: 725707663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1773256176
@@ -2111,7 +2129,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1805618193}
-  - {fileID: 725707663}
   - {fileID: 1961151063}
   - {fileID: 2018093941}
   - {fileID: 1761335348}

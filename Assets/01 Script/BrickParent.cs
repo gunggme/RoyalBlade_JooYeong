@@ -23,13 +23,14 @@ public class BrickParent : MonoBehaviour
         int ranIdx = Random.Range(3, 6);
         for (int i = 0; i < ranIdx; i++)
         {
-            GameObject brick = PoolManager.Instantiate(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
+            GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
             brick.transform.SetParent(transform);
         }
     }
 
     public void UpForce(float power)
     {
+        _rigid.velocity = Vector3.zero;
         _rigid.AddForce(Vector3.up * power, ForceMode2D.Impulse);
     }
 }
