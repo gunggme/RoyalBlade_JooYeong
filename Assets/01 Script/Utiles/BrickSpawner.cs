@@ -8,15 +8,18 @@ public class BrickSpawner : MonoBehaviour
 {
     [SerializeField] private float _maxSpawnTimer;
     [SerializeField] private float _spawnTimer;
+
+    private int _spawnIdx;
     
     [SerializeField] private GameObject _brickParentPrefab;
-    private GameObject _remainObj;
+    private BrickParent _remainObj;
 
     private void Update()
     {
         if (_spawnTimer >= _maxSpawnTimer)
         {
             SpawnBricks();
+            _remainObj.CurIdx = _spawnIdx;
             _spawnTimer = 0;
         }
         else
@@ -27,13 +30,16 @@ public class BrickSpawner : MonoBehaviour
 
     void SpawnBricks()
     {
+        
         if (_remainObj == null)
         {
-            _remainObj = PoolManager.SpawnObject(_brickParentPrefab, transform.position, Quaternion.identity);
+            _spawnIdx++;
+            _remainObj = PoolManager.SpawnObject(_brickParentPrefab, transform.position, Quaternion.identity).GetComponent<BrickParent>();
             return;
         }
-        if (!_remainObj.activeSelf)
+        if (!_remainObj.gameObject.activeSelf)
         {
+            _spawnIdx++;
             _remainObj.gameObject.SetActive(true);
             return;
         }

@@ -9,7 +9,12 @@ public abstract class HPControllerBase : MonoBehaviour, IDeath, IHIt
     [SerializeField] protected float _curHP;
 
     public float MaxHp => _maxHP;
-    public float CurHp => _curHP;
+
+    public float CurHp
+    {
+        get => _curHP;
+        set => _curHP = value;
+    }
 
     protected void OnEnable()
     {

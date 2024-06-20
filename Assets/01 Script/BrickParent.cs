@@ -12,6 +12,12 @@ public class BrickParent : MonoBehaviour
     
     private Rigidbody2D _rigid;
 
+    public int CurIdx
+    {
+        get;
+        set;
+    }
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -24,6 +30,10 @@ public class BrickParent : MonoBehaviour
         for (int i = 0; i < ranIdx; i++)
         {
             GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
+            if (brick.TryGetComponent(out BrickHPCon bhp))
+            {
+                bhp.CurHp = bhp.MaxHp + (CurIdx * 10);
+            }
             brick.transform.SetParent(transform);
         }
     }
