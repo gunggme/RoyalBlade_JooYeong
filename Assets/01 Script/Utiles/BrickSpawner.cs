@@ -8,8 +8,7 @@ public class BrickSpawner : MonoBehaviour
 {
     [SerializeField] private float _maxSpawnTimer;
     [SerializeField] private float _spawnTimer;
-    [SerializeField] private float _totalTimer;
-
+    
     [SerializeField] private GameObject _brickParentPrefab;
     private GameObject _remainObj;
 
@@ -18,6 +17,7 @@ public class BrickSpawner : MonoBehaviour
         if (_spawnTimer >= _maxSpawnTimer)
         {
             SpawnBricks();
+            _spawnTimer = 0;
         }
         else
         {

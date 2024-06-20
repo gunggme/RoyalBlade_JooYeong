@@ -30,6 +30,11 @@ public class BrickParent : MonoBehaviour
 
     public void UpForce(float power)
     {
+        if (transform.childCount == 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         _rigid.velocity = Vector3.zero;
         _rigid.AddForce(Vector3.up * power, ForceMode2D.Impulse);
     }
