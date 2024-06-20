@@ -9,12 +9,26 @@ public class Damageable : MonoBehaviour
     public float Damage => _damage;
     [SerializeField] private float defencePower;
 
+    [SerializeField] private GameObject _damageTextPrefab;
+
+    private Canvas _canvas;
+
+    private void Awake()
+    {
+        _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.transform.CompareTag("Brick")){
             if (other.transform.parent.TryGetComponent(out BrickParent bp))
             {
                 Debug.Log("올라감");
+                DamageText textObj =
+                    PoolManager.SpawnObject(_damageTextPrefab, transform.position, Quaternion.identity).GetComponent<DamageText>();
+                textObj.transform.SetParent(_canvas.transform);
+                textObj.transform.localScale = Vector3.one;
+                textObj.SetText($"{_damage}");
                 bp.UpForce(defencePower);
                 gameObject.SetActive(false);
             }
