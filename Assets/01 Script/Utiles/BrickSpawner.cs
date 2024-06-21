@@ -59,6 +59,7 @@ public class BrickSpawner : MonoBehaviour
             _gameManager.UpdateRemain(1);
             _spawnIdx++;
             _remainObj.gameObject.SetActive(true);
+            _remainObj.transform.position = transform.position;
             return;
         }
 
