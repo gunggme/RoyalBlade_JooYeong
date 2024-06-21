@@ -6,15 +6,17 @@ using UnityEngine;
 public class Damageable : MonoBehaviour
 {
     [SerializeField] private float _damage;
-    public float Damage => _damage;
+    public float Damage => _damage * _player.AttPower;
     [SerializeField] private float defencePower;
 
     [SerializeField] private GameObject _damageTextPrefab;
 
+    private Player _player;
     private Canvas _canvas;
 
     private void Awake()
     {
+        _player = transform.parent.GetComponent<Player>();
         _canvas = GameObject.Find("UserCanvas").GetComponent<Canvas>();
     }
 

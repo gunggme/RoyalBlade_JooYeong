@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     
     public bool GameStop { get; set; }
 
+    public int TotalRound;
+
     [SerializeField] private TMP_Text _remainText;
     
     private void Awake()
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     public void UpdateRemain(int val)
     {
         RemainRound += val;
+        TotalRound += val;
         _remainText.text = $"{RemainRound}/{MaxRemainRound}";
         if (RemainRound >= MaxRemainRound)
         {

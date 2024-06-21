@@ -12,7 +12,25 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxDeffenceTime;
     [SerializeField] private float tempDeffenceTime;
     [SerializeField] private float defencePower;
-    
+
+    public float MaxDeffenceTime
+    {
+        get => maxDeffenceTime * DefCoolDown;
+        set => maxDeffenceTime = value;
+    }
+
+    [field: SerializeField]
+    public float DefCoolDown
+    {
+        get;
+        set;
+    }
+    [field: SerializeField]public float AttPower
+    {
+        get;
+        set;
+    }
+
     private Animator _animator;
     private Rigidbody2D _rigid;
 
@@ -26,7 +44,7 @@ public class Player : MonoBehaviour
     {
         if (tempDeffenceTime > 0)
         {
-            defenceIcon.fillAmount = tempDeffenceTime / maxDeffenceTime;
+            defenceIcon.fillAmount = tempDeffenceTime / MaxDeffenceTime;
             tempDeffenceTime -= Time.deltaTime;
         }
     }
@@ -57,7 +75,7 @@ public class Player : MonoBehaviour
             if (tempDeffenceTime <= 0)
             {
                 Debug.Log("방어함");
-                tempDeffenceTime = maxDeffenceTime;
+                tempDeffenceTime = MaxDeffenceTime;
                 if (other.transform.TryGetComponent(out BrickParent bp))
                 {
                     Debug.Log("올라감");
