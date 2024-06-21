@@ -32,7 +32,7 @@ public class BrickParent : MonoBehaviour
             GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
             if (brick.TryGetComponent(out BrickHPCon bhp))
             {
-                bhp.MaxHp = 20 + (CurIdx * 10);
+                bhp.MaxHp = Mathf.RoundToInt( 20 + (CurIdx * 10));
                 bhp.CurHp = bhp.MaxHp;
             }
             brick.transform.SetParent(transform);
@@ -41,10 +41,18 @@ public class BrickParent : MonoBehaviour
 
     public void UpForce(float power)
     {
-        if (transform.childCount == 0)
+        int remainBrick = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (!transform.GetChild(i).gameObject.activeSelf)
+            {
+                remainBrick++;
+            }
+        }
+
+        if (remainBrick == transform.childCount)
         {
             gameObject.SetActive(false);
-            return;
         }
         _rigid.velocity = Vector3.zero;
         _rigid.AddForce(Vector3.up * power, ForceMode2D.Impulse);

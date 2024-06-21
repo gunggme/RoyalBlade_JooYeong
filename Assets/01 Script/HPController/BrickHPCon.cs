@@ -27,7 +27,7 @@ public class BrickHPCon : HPControllerBase
     
     public override void Death()
     {
-        _goodsManager.Gold += Random.Range(Mathf.CeilToInt(_maxHP / 2), Mathf.CeilToInt(_maxHP));
+        _goodsManager.GetGold(Random.Range(Mathf.CeilToInt(_maxHP / 2), Mathf.CeilToInt(_maxHP)));
         gameObject.SetActive(false);
     }
 
