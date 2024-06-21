@@ -11,7 +11,7 @@ public class GoodsManager : MonoBehaviour
 
     private void Awake()
     {
-        _goldText.text = $"{Gold:C0}G";
+        _goldText.text = $"{Gold:N0}G";
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class GoodsManager : MonoBehaviour
         
         Debug.Log("구매 성공");
         Gold -= val;
-        _goldText.text = $"{Gold:C0}G";
+        _goldText.text = $"{Gold:N0}G";
         return true;
     }
 }
