@@ -33,12 +33,21 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
+        if (!CheckGround())
+        {
+            return;
+        }
         _rigid.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
     }
 
     public void Attack()
     {
         _animator.SetTrigger("Attack");
+    }
+    
+    bool CheckGround()
+    {
+        return Physics2D.Raycast(transform.position, Vector2.down, 1f, LayerMask.GetMask("Ground"));
     }
 
     private void OnCollisionEnter2D(Collision2D other)
