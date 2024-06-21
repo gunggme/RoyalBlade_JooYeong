@@ -32,7 +32,8 @@ public class BrickParent : MonoBehaviour
             GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
             if (brick.TryGetComponent(out BrickHPCon bhp))
             {
-                bhp.CurHp = bhp.MaxHp + (CurIdx * 10);
+                bhp.MaxHp = 20 + (CurIdx * 10);
+                bhp.CurHp = bhp.MaxHp;
             }
             brick.transform.SetParent(transform);
         }
