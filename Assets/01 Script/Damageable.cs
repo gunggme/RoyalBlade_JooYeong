@@ -15,7 +15,7 @@ public class Damageable : MonoBehaviour
 
     private void Awake()
     {
-        _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        _canvas = GameObject.Find("UserCanvas").GetComponent<Canvas>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
