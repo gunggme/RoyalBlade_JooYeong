@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        //점프 하면 쿨 초기화
+        tempDeffenceTime = 0;
         _rigid.AddForce(Vector3.up * _jumpPower, ForceMode2D.Impulse);
     }
 
