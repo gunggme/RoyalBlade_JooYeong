@@ -22,10 +22,10 @@ public class GoodsManager : MonoBehaviour
     public void GetGold(int val)
     {
         Gold += val;
-        _goldText.text = $"{Gold:C0}G";
+        _goldText.text = $"{Gold:N0}G";
     }
     
-    bool UseGold(int val)
+    public bool UseGold(int val)
     {
         if (val > Gold)
         {

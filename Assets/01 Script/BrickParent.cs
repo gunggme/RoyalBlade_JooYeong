@@ -29,7 +29,7 @@ public class BrickParent : MonoBehaviour
         int ranIdx = Random.Range(3, 6);
         for (int i = 0; i < ranIdx; i++)
         {
-            GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity);
+            GameObject brick = PoolManager.SpawnObject(_brickPrefabs, transform.position + (_brickOffset * i), quaternion.identity, PoolManager.PoolType.GameObject);
             if (brick.TryGetComponent(out BrickHPCon bhp))
             {
                 bhp.MaxHp = Mathf.RoundToInt( 20 + (CurIdx * 10));

@@ -35,23 +35,39 @@ public class BrickSpawner : MonoBehaviour
             {
                 SpawnBricks();
                 _remainObj.CurIdx = _spawnIdx;
-                _spawnTimer = 0;
+                
             }
             else
             {
                 _spawnTimer += Time.deltaTime;
+            } 
+        }
+        else
+        {
+            if (_remainObj == null)
+            {
+                return;
+            }
+            if (_remainObj.gameObject.activeSelf)
+            {
+                _remainObj.gameObject.SetActive(false);
             }
         }
     }
 
     void SpawnBricks()
     {
+        if (_gameManager.GameStop)
+        {
+            return;
+        }
         
         if (_remainObj == null)
         {
             _spawnIdx++;
             _gameManager.UpdateRemain(1);
-            _remainObj = PoolManager.SpawnObject(_brickParentPrefab, transform.position, Quaternion.identity).GetComponent<BrickParent>();
+            _remainObj = PoolManager.SpawnObject(_brickParentPrefab, transform.position, Quaternion.identity, PoolManager.PoolType.GameObject).GetComponent<BrickParent>();
+            _spawnTimer = 0;
             return;
         }
         if (!_remainObj.gameObject.activeSelf)
@@ -60,6 +76,7 @@ public class BrickSpawner : MonoBehaviour
             _spawnIdx++;
             _remainObj.gameObject.SetActive(true);
             _remainObj.transform.position = transform.position;
+            _spawnTimer = 0;
             return;
         }
 

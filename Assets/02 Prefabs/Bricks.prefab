@@ -73,4 +73,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brickPrefabs: {fileID: 1488994954656952265, guid: fa8ebd92a664e684690b356e9bd44fa3, type: 3}
-  _brickOffset: {x: 0, y: 0.6, z: 0}
+  _brickOffset: {x: 0, y: 1, z: 0}

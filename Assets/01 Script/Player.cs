@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float tempDeffenceTime;
     [SerializeField] private float defencePower;
 
+    private GameManager _gameManager;
+
     public float MaxDeffenceTime
     {
         get => maxDeffenceTime * DefCoolDown;
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         _rigid = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -84,6 +87,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                _gameManager.GameOver();
                 gameObject.SetActive(false);
             }
         }

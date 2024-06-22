@@ -8,14 +8,21 @@ public class DefItem : ItemBase
 {
     private Player _player;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _player = FindObjectOfType<Player>();
     }
 
     public override void BuyItem()
     {
-        float upVal = Random.Range(_minUpVal, _maxUpVal);
-        _player.MaxDeffenceTime += upVal;
+        if (_goodsManager.UseGold(_price))
+        {
+            float upVal = Random.Range(_minUpVal, _maxUpVal);
+            _player.MaxDeffenceTime *= upVal;
+            _gameManager.StartGame();
+            _shopParent.gameObject.SetActive(false);
+        }
+        
     }
 }
